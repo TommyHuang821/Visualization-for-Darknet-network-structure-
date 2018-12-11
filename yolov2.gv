@@ -1,0 +1,98 @@
+digraph yolov2 {
+	node [color=yellow shape=record style=filled]
+	Input [label="{ Input |output: 608 × 608 × 3}"]
+	node [color=lightblue2 shape=record style=filled]
+	l_1 [label="{ Conv_32 (bn)|{ks=3, s=1, p=1 , leaky}| output: 608 × 608 × 32}"]
+	node [color=grey shape=record style=filled]
+	l_2 [label="{ maxpool|{ks=2, stri=2}|output:304 × 304 × 32}"]
+	node [color=lightblue2 shape=record style=filled]
+	l_3 [label="{ Conv_64 (bn)|{ks=3, s=1, p=1 , leaky}| output: 304 × 304 × 64}"]
+	node [color=grey shape=record style=filled]
+	l_4 [label="{ maxpool|{ks=2, stri=2}|output:152 × 152 × 64}"]
+	node [color=lightblue2 shape=record style=filled]
+	l_5 [label="{ Conv_128 (bn)|{ks=3, s=1, p=1 , leaky}| output: 152 × 152 × 128}"]
+	node [color=lightblue2 shape=record style=filled]
+	l_6 [label="{ Conv_64 (bn)|{ks=1, s=1, p=1 , leaky}| output: 152 × 152 × 64}"]
+	node [color=lightblue2 shape=record style=filled]
+	l_7 [label="{ Conv_128 (bn)|{ks=3, s=1, p=1 , leaky}| output: 152 × 152 × 128}"]
+	node [color=grey shape=record style=filled]
+	l_8 [label="{ maxpool|{ks=2, stri=2}|output:76 × 76 × 128}"]
+	node [color=lightblue2 shape=record style=filled]
+	l_9 [label="{ Conv_256 (bn)|{ks=3, s=1, p=1 , leaky}| output: 76 × 76 × 256}"]
+	node [color=lightblue2 shape=record style=filled]
+	l_10 [label="{ Conv_128 (bn)|{ks=1, s=1, p=1 , leaky}| output: 76 × 76 × 128}"]
+	node [color=lightblue2 shape=record style=filled]
+	l_11 [label="{ Conv_256 (bn)|{ks=3, s=1, p=1 , leaky}| output: 76 × 76 × 256}"]
+	node [color=grey shape=record style=filled]
+	l_12 [label="{ maxpool|{ks=2, stri=2}|output:38 × 38 × 256}"]
+	node [color=lightblue2 shape=record style=filled]
+	l_13 [label="{ Conv_512 (bn)|{ks=3, s=1, p=1 , leaky}| output: 38 × 38 × 512}"]
+	node [color=lightblue2 shape=record style=filled]
+	l_14 [label="{ Conv_256 (bn)|{ks=1, s=1, p=1 , leaky}| output: 38 × 38 × 256}"]
+	node [color=lightblue2 shape=record style=filled]
+	l_15 [label="{ Conv_512 (bn)|{ks=3, s=1, p=1 , leaky}| output: 38 × 38 × 512}"]
+	node [color=lightblue2 shape=record style=filled]
+	l_16 [label="{ Conv_256 (bn)|{ks=1, s=1, p=1 , leaky}| output: 38 × 38 × 256}"]
+	node [color=lightblue2 shape=record style=filled]
+	l_17 [label="{ Conv_512 (bn)|{ks=3, s=1, p=1 , leaky}| output: 38 × 38 × 512}"]
+	node [color=grey shape=record style=filled]
+	l_18 [label="{ maxpool|{ks=2, stri=2}|output:19 × 19 × 512}"]
+	node [color=lightblue2 shape=record style=filled]
+	l_19 [label="{ Conv_1024 (bn)|{ks=3, s=1, p=1 , leaky}| output: 19 × 19 × 1024}"]
+	node [color=lightblue2 shape=record style=filled]
+	l_20 [label="{ Conv_512 (bn)|{ks=1, s=1, p=1 , leaky}| output: 19 × 19 × 512}"]
+	node [color=lightblue2 shape=record style=filled]
+	l_21 [label="{ Conv_1024 (bn)|{ks=3, s=1, p=1 , leaky}| output: 19 × 19 × 1024}"]
+	node [color=lightblue2 shape=record style=filled]
+	l_22 [label="{ Conv_512 (bn)|{ks=1, s=1, p=1 , leaky}| output: 19 × 19 × 512}"]
+	node [color=lightblue2 shape=record style=filled]
+	l_23 [label="{ Conv_1024 (bn)|{ks=3, s=1, p=1 , leaky}| output: 19 × 19 × 1024}"]
+	node [color=lightblue2 shape=record style=filled]
+	l_24 [label="{ Conv_1024 (bn)|{ks=3, s=1, p=1 , leaky}| output: 19 × 19 × 1024}"]
+	node [color=lightblue2 shape=record style=filled]
+	l_25 [label="{ Conv_1024 (bn)|{ks=3, s=1, p=1 , leaky}| output: 19 × 19 × 1024}"]
+	node [color=lightblue2 shape=record style=filled]
+	l_27 [label="{ Conv_64 (bn)|{ks=1, s=1, p=1 , leaky}| output: 38 × 38 × 64}"]
+	node [color=grey shape=record style=filled]
+	l_28 [label="{ reorg|{ks=1, stri=2}|output:19 × 19 × 256}"]
+	node [color=red shape=record style=filled]
+	l_29 [label="{ concatenate|output:19 × 19 × 1280}"]
+	node [color=lightblue2 shape=record style=filled]
+	l_30 [label="{ Conv_1024 (bn)|{ks=3, s=1, p=1 , leaky}| output: 19 × 19 × 1024}"]
+	node [color=lightblue2 shape=record style=filled]
+	l_31 [label="{ Conv_425 |{ks=1, s=1, p=1 , linear}| output: 19 × 19 × 425}"]
+	node [color=yellow shape=record style=filled]
+	l_32 [label="{yolo|classes=80}"]
+	Input -> l_1
+	l_1 -> l_2
+	l_2 -> l_3
+	l_3 -> l_4
+	l_4 -> l_5
+	l_5 -> l_6
+	l_6 -> l_7
+	l_7 -> l_8
+	l_8 -> l_9
+	l_9 -> l_10
+	l_10 -> l_11
+	l_11 -> l_12
+	l_12 -> l_13
+	l_13 -> l_14
+	l_14 -> l_15
+	l_15 -> l_16
+	l_16 -> l_17
+	l_17 -> l_18
+	l_18 -> l_19
+	l_19 -> l_20
+	l_20 -> l_21
+	l_21 -> l_22
+	l_22 -> l_23
+	l_23 -> l_24
+	l_24 -> l_25
+	l_17 -> l_27
+	l_27 -> l_28
+	l_28 -> l_29
+	l_25 -> l_29
+	l_29 -> l_30
+	l_30 -> l_31
+	l_31 -> l_32
+}

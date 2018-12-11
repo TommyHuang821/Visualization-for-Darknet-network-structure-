@@ -1,0 +1,344 @@
+digraph yolov3 {
+	node [color=yellow shape=record style=filled]
+	Input [label="{ Input |output: 416 × 416 × 3}"]
+	node [color=lightblue2 shape=record style=filled]
+	l_1 [label="{ Conv_32 (bn)|{ks=3, s=1, p=1 , leaky}| output: 416 × 416 × 32}"]
+	node [color=lightblue2 shape=record style=filled]
+	l_2 [label="{ Conv_64 (bn)|{ks=3, s=2, p=1 , leaky}| output: 208 × 208 × 64}"]
+	node [color=lightblue2 shape=record style=filled]
+	l_3 [label="{ Conv_32 (bn)|{ks=1, s=1, p=1 , leaky}| output: 208 × 208 × 32}"]
+	node [color=lightblue2 shape=record style=filled]
+	l_4 [label="{ Conv_64 (bn)|{ks=3, s=1, p=1 , leaky}| output: 208 × 208 × 64}"]
+	node [color=lightgrey shape=record style=filled]
+	l_5 [label="{ElewiseSum|output: 208 × 208 × 64}"]
+	node [color=lightblue2 shape=record style=filled]
+	l_6 [label="{ Conv_128 (bn)|{ks=3, s=2, p=1 , leaky}| output: 104 × 104 × 128}"]
+	node [color=lightblue2 shape=record style=filled]
+	l_7 [label="{ Conv_64 (bn)|{ks=1, s=1, p=1 , leaky}| output: 104 × 104 × 64}"]
+	node [color=lightblue2 shape=record style=filled]
+	l_8 [label="{ Conv_128 (bn)|{ks=3, s=1, p=1 , leaky}| output: 104 × 104 × 128}"]
+	node [color=lightgrey shape=record style=filled]
+	l_9 [label="{ElewiseSum|output: 104 × 104 × 128}"]
+	node [color=lightblue2 shape=record style=filled]
+	l_10 [label="{ Conv_64 (bn)|{ks=1, s=1, p=1 , leaky}| output: 104 × 104 × 64}"]
+	node [color=lightblue2 shape=record style=filled]
+	l_11 [label="{ Conv_128 (bn)|{ks=3, s=1, p=1 , leaky}| output: 104 × 104 × 128}"]
+	node [color=lightgrey shape=record style=filled]
+	l_12 [label="{ElewiseSum|output: 104 × 104 × 128}"]
+	node [color=lightblue2 shape=record style=filled]
+	l_13 [label="{ Conv_256 (bn)|{ks=3, s=2, p=1 , leaky}| output: 52 × 52 × 256}"]
+	node [color=lightblue2 shape=record style=filled]
+	l_14 [label="{ Conv_128 (bn)|{ks=1, s=1, p=1 , leaky}| output: 52 × 52 × 128}"]
+	node [color=lightblue2 shape=record style=filled]
+	l_15 [label="{ Conv_256 (bn)|{ks=3, s=1, p=1 , leaky}| output: 52 × 52 × 256}"]
+	node [color=lightgrey shape=record style=filled]
+	l_16 [label="{ElewiseSum|output: 52 × 52 × 256}"]
+	node [color=lightblue2 shape=record style=filled]
+	l_17 [label="{ Conv_128 (bn)|{ks=1, s=1, p=1 , leaky}| output: 52 × 52 × 128}"]
+	node [color=lightblue2 shape=record style=filled]
+	l_18 [label="{ Conv_256 (bn)|{ks=3, s=1, p=1 , leaky}| output: 52 × 52 × 256}"]
+	node [color=lightgrey shape=record style=filled]
+	l_19 [label="{ElewiseSum|output: 52 × 52 × 256}"]
+	node [color=lightblue2 shape=record style=filled]
+	l_20 [label="{ Conv_128 (bn)|{ks=1, s=1, p=1 , leaky}| output: 52 × 52 × 128}"]
+	node [color=lightblue2 shape=record style=filled]
+	l_21 [label="{ Conv_256 (bn)|{ks=3, s=1, p=1 , leaky}| output: 52 × 52 × 256}"]
+	node [color=lightgrey shape=record style=filled]
+	l_22 [label="{ElewiseSum|output: 52 × 52 × 256}"]
+	node [color=lightblue2 shape=record style=filled]
+	l_23 [label="{ Conv_128 (bn)|{ks=1, s=1, p=1 , leaky}| output: 52 × 52 × 128}"]
+	node [color=lightblue2 shape=record style=filled]
+	l_24 [label="{ Conv_256 (bn)|{ks=3, s=1, p=1 , leaky}| output: 52 × 52 × 256}"]
+	node [color=lightgrey shape=record style=filled]
+	l_25 [label="{ElewiseSum|output: 52 × 52 × 256}"]
+	node [color=lightblue2 shape=record style=filled]
+	l_26 [label="{ Conv_128 (bn)|{ks=1, s=1, p=1 , leaky}| output: 52 × 52 × 128}"]
+	node [color=lightblue2 shape=record style=filled]
+	l_27 [label="{ Conv_256 (bn)|{ks=3, s=1, p=1 , leaky}| output: 52 × 52 × 256}"]
+	node [color=lightgrey shape=record style=filled]
+	l_28 [label="{ElewiseSum|output: 52 × 52 × 256}"]
+	node [color=lightblue2 shape=record style=filled]
+	l_29 [label="{ Conv_128 (bn)|{ks=1, s=1, p=1 , leaky}| output: 52 × 52 × 128}"]
+	node [color=lightblue2 shape=record style=filled]
+	l_30 [label="{ Conv_256 (bn)|{ks=3, s=1, p=1 , leaky}| output: 52 × 52 × 256}"]
+	node [color=lightgrey shape=record style=filled]
+	l_31 [label="{ElewiseSum|output: 52 × 52 × 256}"]
+	node [color=lightblue2 shape=record style=filled]
+	l_32 [label="{ Conv_128 (bn)|{ks=1, s=1, p=1 , leaky}| output: 52 × 52 × 128}"]
+	node [color=lightblue2 shape=record style=filled]
+	l_33 [label="{ Conv_256 (bn)|{ks=3, s=1, p=1 , leaky}| output: 52 × 52 × 256}"]
+	node [color=lightgrey shape=record style=filled]
+	l_34 [label="{ElewiseSum|output: 52 × 52 × 256}"]
+	node [color=lightblue2 shape=record style=filled]
+	l_35 [label="{ Conv_128 (bn)|{ks=1, s=1, p=1 , leaky}| output: 52 × 52 × 128}"]
+	node [color=lightblue2 shape=record style=filled]
+	l_36 [label="{ Conv_256 (bn)|{ks=3, s=1, p=1 , leaky}| output: 52 × 52 × 256}"]
+	node [color=lightgrey shape=record style=filled]
+	l_37 [label="{ElewiseSum|output: 52 × 52 × 256}"]
+	node [color=lightblue2 shape=record style=filled]
+	l_38 [label="{ Conv_512 (bn)|{ks=3, s=2, p=1 , leaky}| output: 26 × 26 × 512}"]
+	node [color=lightblue2 shape=record style=filled]
+	l_39 [label="{ Conv_256 (bn)|{ks=1, s=1, p=1 , leaky}| output: 26 × 26 × 256}"]
+	node [color=lightblue2 shape=record style=filled]
+	l_40 [label="{ Conv_512 (bn)|{ks=3, s=1, p=1 , leaky}| output: 26 × 26 × 512}"]
+	node [color=lightgrey shape=record style=filled]
+	l_41 [label="{ElewiseSum|output: 26 × 26 × 512}"]
+	node [color=lightblue2 shape=record style=filled]
+	l_42 [label="{ Conv_256 (bn)|{ks=1, s=1, p=1 , leaky}| output: 26 × 26 × 256}"]
+	node [color=lightblue2 shape=record style=filled]
+	l_43 [label="{ Conv_512 (bn)|{ks=3, s=1, p=1 , leaky}| output: 26 × 26 × 512}"]
+	node [color=lightgrey shape=record style=filled]
+	l_44 [label="{ElewiseSum|output: 26 × 26 × 512}"]
+	node [color=lightblue2 shape=record style=filled]
+	l_45 [label="{ Conv_256 (bn)|{ks=1, s=1, p=1 , leaky}| output: 26 × 26 × 256}"]
+	node [color=lightblue2 shape=record style=filled]
+	l_46 [label="{ Conv_512 (bn)|{ks=3, s=1, p=1 , leaky}| output: 26 × 26 × 512}"]
+	node [color=lightgrey shape=record style=filled]
+	l_47 [label="{ElewiseSum|output: 26 × 26 × 512}"]
+	node [color=lightblue2 shape=record style=filled]
+	l_48 [label="{ Conv_256 (bn)|{ks=1, s=1, p=1 , leaky}| output: 26 × 26 × 256}"]
+	node [color=lightblue2 shape=record style=filled]
+	l_49 [label="{ Conv_512 (bn)|{ks=3, s=1, p=1 , leaky}| output: 26 × 26 × 512}"]
+	node [color=lightgrey shape=record style=filled]
+	l_50 [label="{ElewiseSum|output: 26 × 26 × 512}"]
+	node [color=lightblue2 shape=record style=filled]
+	l_51 [label="{ Conv_256 (bn)|{ks=1, s=1, p=1 , leaky}| output: 26 × 26 × 256}"]
+	node [color=lightblue2 shape=record style=filled]
+	l_52 [label="{ Conv_512 (bn)|{ks=3, s=1, p=1 , leaky}| output: 26 × 26 × 512}"]
+	node [color=lightgrey shape=record style=filled]
+	l_53 [label="{ElewiseSum|output: 26 × 26 × 512}"]
+	node [color=lightblue2 shape=record style=filled]
+	l_54 [label="{ Conv_256 (bn)|{ks=1, s=1, p=1 , leaky}| output: 26 × 26 × 256}"]
+	node [color=lightblue2 shape=record style=filled]
+	l_55 [label="{ Conv_512 (bn)|{ks=3, s=1, p=1 , leaky}| output: 26 × 26 × 512}"]
+	node [color=lightgrey shape=record style=filled]
+	l_56 [label="{ElewiseSum|output: 26 × 26 × 512}"]
+	node [color=lightblue2 shape=record style=filled]
+	l_57 [label="{ Conv_256 (bn)|{ks=1, s=1, p=1 , leaky}| output: 26 × 26 × 256}"]
+	node [color=lightblue2 shape=record style=filled]
+	l_58 [label="{ Conv_512 (bn)|{ks=3, s=1, p=1 , leaky}| output: 26 × 26 × 512}"]
+	node [color=lightgrey shape=record style=filled]
+	l_59 [label="{ElewiseSum|output: 26 × 26 × 512}"]
+	node [color=lightblue2 shape=record style=filled]
+	l_60 [label="{ Conv_256 (bn)|{ks=1, s=1, p=1 , leaky}| output: 26 × 26 × 256}"]
+	node [color=lightblue2 shape=record style=filled]
+	l_61 [label="{ Conv_512 (bn)|{ks=3, s=1, p=1 , leaky}| output: 26 × 26 × 512}"]
+	node [color=lightgrey shape=record style=filled]
+	l_62 [label="{ElewiseSum|output: 26 × 26 × 512}"]
+	node [color=lightblue2 shape=record style=filled]
+	l_63 [label="{ Conv_1024 (bn)|{ks=3, s=2, p=1 , leaky}| output: 13 × 13 × 1024}"]
+	node [color=lightblue2 shape=record style=filled]
+	l_64 [label="{ Conv_512 (bn)|{ks=1, s=1, p=1 , leaky}| output: 13 × 13 × 512}"]
+	node [color=lightblue2 shape=record style=filled]
+	l_65 [label="{ Conv_1024 (bn)|{ks=3, s=1, p=1 , leaky}| output: 13 × 13 × 1024}"]
+	node [color=lightgrey shape=record style=filled]
+	l_66 [label="{ElewiseSum|output: 13 × 13 × 1024}"]
+	node [color=lightblue2 shape=record style=filled]
+	l_67 [label="{ Conv_512 (bn)|{ks=1, s=1, p=1 , leaky}| output: 13 × 13 × 512}"]
+	node [color=lightblue2 shape=record style=filled]
+	l_68 [label="{ Conv_1024 (bn)|{ks=3, s=1, p=1 , leaky}| output: 13 × 13 × 1024}"]
+	node [color=lightgrey shape=record style=filled]
+	l_69 [label="{ElewiseSum|output: 13 × 13 × 1024}"]
+	node [color=lightblue2 shape=record style=filled]
+	l_70 [label="{ Conv_512 (bn)|{ks=1, s=1, p=1 , leaky}| output: 13 × 13 × 512}"]
+	node [color=lightblue2 shape=record style=filled]
+	l_71 [label="{ Conv_1024 (bn)|{ks=3, s=1, p=1 , leaky}| output: 13 × 13 × 1024}"]
+	node [color=lightgrey shape=record style=filled]
+	l_72 [label="{ElewiseSum|output: 13 × 13 × 1024}"]
+	node [color=lightblue2 shape=record style=filled]
+	l_73 [label="{ Conv_512 (bn)|{ks=1, s=1, p=1 , leaky}| output: 13 × 13 × 512}"]
+	node [color=lightblue2 shape=record style=filled]
+	l_74 [label="{ Conv_1024 (bn)|{ks=3, s=1, p=1 , leaky}| output: 13 × 13 × 1024}"]
+	node [color=lightgrey shape=record style=filled]
+	l_75 [label="{ElewiseSum|output: 13 × 13 × 1024}"]
+	node [color=lightblue2 shape=record style=filled]
+	l_76 [label="{ Conv_512 (bn)|{ks=1, s=1, p=1 , leaky}| output: 13 × 13 × 512}"]
+	node [color=lightblue2 shape=record style=filled]
+	l_77 [label="{ Conv_1024 (bn)|{ks=3, s=1, p=1 , leaky}| output: 13 × 13 × 1024}"]
+	node [color=lightblue2 shape=record style=filled]
+	l_78 [label="{ Conv_512 (bn)|{ks=1, s=1, p=1 , leaky}| output: 13 × 13 × 512}"]
+	node [color=lightblue2 shape=record style=filled]
+	l_79 [label="{ Conv_1024 (bn)|{ks=3, s=1, p=1 , leaky}| output: 13 × 13 × 1024}"]
+	node [color=lightblue2 shape=record style=filled]
+	l_80 [label="{ Conv_512 (bn)|{ks=1, s=1, p=1 , leaky}| output: 13 × 13 × 512}"]
+	node [color=lightblue2 shape=record style=filled]
+	l_81 [label="{ Conv_1024 (bn)|{ks=3, s=1, p=1 , leaky}| output: 13 × 13 × 1024}"]
+	node [color=lightblue2 shape=record style=filled]
+	l_82 [label="{ Conv_255 |{ks=1, s=1, p=1 , linear}| output: 13 × 13 × 255}"]
+	node [color=yellow shape=record style=filled]
+	l_83 [label="{yolo|classes=80|mask:6,7,8}"]
+	node [color=lightblue2 shape=record style=filled]
+	l_85 [label="{ Conv_256 (bn)|{ks=1, s=1, p=1 , leaky}| output: 13 × 13 × 256}"]
+	node [color=blue shape=record style=filled]
+	l_86 [label="{upsample|s=2|output:26 × 26 × 256}"]
+	node [color=red shape=record style=filled]
+	l_87 [label="{ concatenate|output:26 × 26 × 768}"]
+	node [color=lightblue2 shape=record style=filled]
+	l_88 [label="{ Conv_256 (bn)|{ks=1, s=1, p=1 , leaky}| output: 26 × 26 × 256}"]
+	node [color=lightblue2 shape=record style=filled]
+	l_89 [label="{ Conv_512 (bn)|{ks=3, s=1, p=1 , leaky}| output: 26 × 26 × 512}"]
+	node [color=lightblue2 shape=record style=filled]
+	l_90 [label="{ Conv_256 (bn)|{ks=1, s=1, p=1 , leaky}| output: 26 × 26 × 256}"]
+	node [color=lightblue2 shape=record style=filled]
+	l_91 [label="{ Conv_512 (bn)|{ks=3, s=1, p=1 , leaky}| output: 26 × 26 × 512}"]
+	node [color=lightblue2 shape=record style=filled]
+	l_92 [label="{ Conv_256 (bn)|{ks=1, s=1, p=1 , leaky}| output: 26 × 26 × 256}"]
+	node [color=lightblue2 shape=record style=filled]
+	l_93 [label="{ Conv_512 (bn)|{ks=3, s=1, p=1 , leaky}| output: 26 × 26 × 512}"]
+	node [color=lightblue2 shape=record style=filled]
+	l_94 [label="{ Conv_255 |{ks=1, s=1, p=1 , linear}| output: 26 × 26 × 255}"]
+	node [color=yellow shape=record style=filled]
+	l_95 [label="{yolo|classes=80|mask:3,4,5}"]
+	node [color=lightblue2 shape=record style=filled]
+	l_97 [label="{ Conv_128 (bn)|{ks=1, s=1, p=1 , leaky}| output: 26 × 26 × 128}"]
+	node [color=blue shape=record style=filled]
+	l_98 [label="{upsample|s=2|output:52 × 52 × 128}"]
+	node [color=red shape=record style=filled]
+	l_99 [label="{ concatenate|output:52 × 52 × 384}"]
+	node [color=lightblue2 shape=record style=filled]
+	l_100 [label="{ Conv_128 (bn)|{ks=1, s=1, p=1 , leaky}| output: 52 × 52 × 128}"]
+	node [color=lightblue2 shape=record style=filled]
+	l_101 [label="{ Conv_256 (bn)|{ks=3, s=1, p=1 , leaky}| output: 52 × 52 × 256}"]
+	node [color=lightblue2 shape=record style=filled]
+	l_102 [label="{ Conv_128 (bn)|{ks=1, s=1, p=1 , leaky}| output: 52 × 52 × 128}"]
+	node [color=lightblue2 shape=record style=filled]
+	l_103 [label="{ Conv_256 (bn)|{ks=3, s=1, p=1 , leaky}| output: 52 × 52 × 256}"]
+	node [color=lightblue2 shape=record style=filled]
+	l_104 [label="{ Conv_128 (bn)|{ks=1, s=1, p=1 , leaky}| output: 52 × 52 × 128}"]
+	node [color=lightblue2 shape=record style=filled]
+	l_105 [label="{ Conv_256 (bn)|{ks=3, s=1, p=1 , leaky}| output: 52 × 52 × 256}"]
+	node [color=lightblue2 shape=record style=filled]
+	l_106 [label="{ Conv_255 |{ks=1, s=1, p=1 , linear}| output: 52 × 52 × 255}"]
+	node [color=yellow shape=record style=filled]
+	l_107 [label="{yolo|classes=80|mask:0,1,2}"]
+	Input -> l_1
+	l_1 -> l_2
+	l_2 -> l_3
+	l_3 -> l_4
+	l_2 -> l_5
+	l_4 -> l_5
+	l_5 -> l_6
+	l_6 -> l_7
+	l_7 -> l_8
+	l_6 -> l_9
+	l_8 -> l_9
+	l_9 -> l_10
+	l_10 -> l_11
+	l_9 -> l_12
+	l_11 -> l_12
+	l_12 -> l_13
+	l_13 -> l_14
+	l_14 -> l_15
+	l_13 -> l_16
+	l_15 -> l_16
+	l_16 -> l_17
+	l_17 -> l_18
+	l_16 -> l_19
+	l_18 -> l_19
+	l_19 -> l_20
+	l_20 -> l_21
+	l_19 -> l_22
+	l_21 -> l_22
+	l_22 -> l_23
+	l_23 -> l_24
+	l_22 -> l_25
+	l_24 -> l_25
+	l_25 -> l_26
+	l_26 -> l_27
+	l_25 -> l_28
+	l_27 -> l_28
+	l_28 -> l_29
+	l_29 -> l_30
+	l_28 -> l_31
+	l_30 -> l_31
+	l_31 -> l_32
+	l_32 -> l_33
+	l_31 -> l_34
+	l_33 -> l_34
+	l_34 -> l_35
+	l_35 -> l_36
+	l_34 -> l_37
+	l_36 -> l_37
+	l_37 -> l_38
+	l_38 -> l_39
+	l_39 -> l_40
+	l_38 -> l_41
+	l_40 -> l_41
+	l_41 -> l_42
+	l_42 -> l_43
+	l_41 -> l_44
+	l_43 -> l_44
+	l_44 -> l_45
+	l_45 -> l_46
+	l_44 -> l_47
+	l_46 -> l_47
+	l_47 -> l_48
+	l_48 -> l_49
+	l_47 -> l_50
+	l_49 -> l_50
+	l_50 -> l_51
+	l_51 -> l_52
+	l_50 -> l_53
+	l_52 -> l_53
+	l_53 -> l_54
+	l_54 -> l_55
+	l_53 -> l_56
+	l_55 -> l_56
+	l_56 -> l_57
+	l_57 -> l_58
+	l_56 -> l_59
+	l_58 -> l_59
+	l_59 -> l_60
+	l_60 -> l_61
+	l_59 -> l_62
+	l_61 -> l_62
+	l_62 -> l_63
+	l_63 -> l_64
+	l_64 -> l_65
+	l_63 -> l_66
+	l_65 -> l_66
+	l_66 -> l_67
+	l_67 -> l_68
+	l_66 -> l_69
+	l_68 -> l_69
+	l_69 -> l_70
+	l_70 -> l_71
+	l_69 -> l_72
+	l_71 -> l_72
+	l_72 -> l_73
+	l_73 -> l_74
+	l_72 -> l_75
+	l_74 -> l_75
+	l_75 -> l_76
+	l_76 -> l_77
+	l_77 -> l_78
+	l_78 -> l_79
+	l_79 -> l_80
+	l_80 -> l_81
+	l_81 -> l_82
+	l_82 -> l_83
+	l_80 -> l_85
+	l_85 -> l_86
+	l_86 -> l_87
+	l_61 -> l_87
+	l_87 -> l_88
+	l_88 -> l_89
+	l_89 -> l_90
+	l_90 -> l_91
+	l_91 -> l_92
+	l_92 -> l_93
+	l_93 -> l_94
+	l_94 -> l_95
+	l_92 -> l_97
+	l_97 -> l_98
+	l_98 -> l_99
+	l_36 -> l_99
+	l_99 -> l_100
+	l_100 -> l_101
+	l_101 -> l_102
+	l_102 -> l_103
+	l_103 -> l_104
+	l_104 -> l_105
+	l_105 -> l_106
+	l_106 -> l_107
+}
