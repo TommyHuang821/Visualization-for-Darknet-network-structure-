@@ -11,4 +11,5 @@ Example: python3 main_DarknetVisualization.py
 
 # Requirements
 python3
+
 graphviz
