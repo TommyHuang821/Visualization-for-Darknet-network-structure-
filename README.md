@@ -12,7 +12,7 @@ Example: python3 main_DarknetVisualization.py
 # Output Example
 YOLO 
 
-![YOLO](https://github.com/TommyHuang821/Visualization-for-Darknet-network-structure-/blob/master/yolo.gv.png)
+<img src="https://github.com/TommyHuang821/Visualization-for-Darknet-network-structure-/blob/master/yolo.gv.png" width="50%" height="50%">
 
 # Requirements
 
