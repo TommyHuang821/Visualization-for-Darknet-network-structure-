@@ -10,14 +10,12 @@ Example: python3 main_DarknetVisualization.py
 <img src="https://github.com/TommyHuang821/Visualization-for-Darknet-network-structure-/blob/master/fig/de1.png" width="80%" height="80%">
 
 # Output Example
-YOLO 
-
-<img src="https://github.com/TommyHuang821/Visualization-for-Darknet-network-structure-/blob/master/yolo.gv.png" width="10%" height="10%">
-
 YOLOv2
+
 <img src="https://github.com/TommyHuang821/Visualization-for-Darknet-network-structure-/blob/master/yolov2.gv.png" width="10%" height="10%">
 
 YOLOv3
+
 <img src="https://github.com/TommyHuang821/Visualization-for-Darknet-network-structure-/blob/master/yolov3.gv.png" width="10%" height="10%">
 
 # Requirements
