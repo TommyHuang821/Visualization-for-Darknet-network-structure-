@@ -7,7 +7,7 @@ Example: python3 main_DarknetVisualization.py
 
 "import .cfg path" and "Result save format" can be modified in the 'main_DarknetVisualization.py' directly.
 
-![example](https://github.com/TommyHuang821/Visualization-for-Darknet-network-structure-/blob/master/fig/de1.png)
+<img src="https://github.com/TommyHuang821/Visualization-for-Darknet-network-structure-/blob/master/fig/de1.png" width="50%" height="50%">
 
 # Output Example
 YOLO 
