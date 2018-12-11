@@ -10,7 +10,7 @@ Example: python3 main_DarknetVisualization.py
 ![example](https://github.com/TommyHuang821/Visualization-for-Darknet-network-structure-/blob/master/fig/de1.png)
 
 # Output Example
-## YOLO 
+YOLO 
 
 ![YOLO](https://github.com/TommyHuang821/Visualization-for-Darknet-network-structure-/blob/master/yolo.gv.png)
 
