@@ -1,6 +1,6 @@
 # Visualization-for-Darknet-network-structure-
-Just visualize the darknet network structure by .cfg file
-Supporting: YOLOv1~v3
+
+Visualizing the darknet network structure by .cfg file, and also provide the output featrue map size for each layer.
 
 # How to Use
 Example: python3 main_DarknetVisualization.py 
@@ -8,11 +8,10 @@ Example: python3 main_DarknetVisualization.py
 ![alt tag](https://github.com/TommyHuang821/Visualization-for-Darknet-network-structure-/blob/master/fig/de1.png)
 
 # Output Example
-YOLO
+## YOLO 
+
 ![alt tag](https://github.com/TommyHuang821/Visualization-for-Darknet-network-structure-/blob/master/yolo.gv.png)
 
 
-
 # Requirements
-python3
-graphviz
+python3, graphviz
