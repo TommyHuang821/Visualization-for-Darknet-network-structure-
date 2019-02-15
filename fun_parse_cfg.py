@@ -135,10 +135,7 @@ def yolo_parse(path_cfg):
             #layers = [all_layers[i] for i in ids]
             
             if len(layers) > 1:
-                prev_layer=[]
-                for i in layers:
-                    if i['layer']>0: prev_layer.append(i['layer'])  
-                    else:  prev_layer.append(i['layer'])    
+                prev_layer=[i['layer'] for i in layers]    
                 structure={'type':'concatenate', 'prev_layer': prev_layer, 'layer': count_layer}
                 print('prev_layer:{}, layer:{}, concatenate'.format(prev_layer, count_layer))
                 all_layers.append(structure)  
