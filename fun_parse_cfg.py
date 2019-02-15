@@ -126,9 +126,19 @@ def yolo_parse(path_cfg):
             
         elif section.startswith('route'):
             ids = [int(i) for i in cfg_parser[section]['layers'].split(',')]
-            layers = [all_layers[i] for i in ids]
+            layers=[]
+            for i in ids: 
+                if i>0:
+                    layers.append(all_layers[i+1])
+                else:
+                    layers.append(all_layers[i])
+            #layers = [all_layers[i] for i in ids]
+            
             if len(layers) > 1:
-                prev_layer = [i['layer']  for i in layers]
+                prev_layer=[]
+                for i in layers:
+                    if i['layer']>0: prev_layer.append(i['layer'])  
+                    else:  prev_layer.append(i['layer'])    
                 structure={'type':'concatenate', 'prev_layer': prev_layer, 'layer': count_layer}
                 print('prev_layer:{}, layer:{}, concatenate'.format(prev_layer, count_layer))
                 all_layers.append(structure)  
