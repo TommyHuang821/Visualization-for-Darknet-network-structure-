@@ -135,7 +135,7 @@ def yolo_parse(path_cfg):
             #layers = [all_layers[i] for i in ids]
             
             if len(layers) > 1:
-                prev_layer=[i['layer'] for i in layers]    
+                prev_layer=[i['layer'] for i in layers]  
                 structure={'type':'concatenate', 'prev_layer': prev_layer, 'layer': count_layer}
                 print('prev_layer:{}, layer:{}, concatenate'.format(prev_layer, count_layer))
                 all_layers.append(structure)  
@@ -150,6 +150,7 @@ def yolo_parse(path_cfg):
     
                 print('prev_layer:{}, layer:{}, shortcut'.format(prev_layer, count_layer))
                 all_layers.append(structure) 
+                
     
         elif section.startswith('reorg'):
                 # stride = int(cfg_parser[section]['stride'])
@@ -184,13 +185,15 @@ def yolo_parse(path_cfg):
         elif section.startswith('shortcut'):
             
             ids = [int(i) for i in cfg_parser[section]['from'].split(',')][0]
-                    
+            '''
+            Becasue I add input image layer in first factor of all_layers list, 
+            the corresponding layer code must +1 (if layer code is postive number)
+            '''
+            if ids>0: 
+                ids+=1
+             
             activation = cfg_parser[section]['activation']
-            if all_layers[ids]['type']=='residual':
-                #prev_layer=[ all_layers[ids-1]['prev_layer'], all_layers[-1]['layer']]
-                prev_layer=[ all_layers[ids]['layer'], all_layers[-1]['layer']]
-            else:
-                prev_layer=[ all_layers[ids+1]['prev_layer'], all_layers[-1]['layer']]
+            prev_layer=[ all_layers[ids]['layer'], all_layers[-1]['layer']]
     
             structure={'type':'residual', 'prev_layer': prev_layer, 'layer': count_layer, 'activation': activation}
             print('prev_layer:{}, layer:{}, residual, activation:{}'.format(prev_layer, count_layer,activation))
