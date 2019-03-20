@@ -46,6 +46,17 @@ def yolo_parse(path_cfg):
     hue = float(cfg_parser['net_0']['hue']) #色調
     training_DataAugmentation={'angle':angle,'saturation': saturation,
                         'exposure':exposure,'hue':hue}
+    
+    # rnn setting
+    time_steps=0
+    track=0
+    augment_speed=0    
+    if 'track' in cfg_parser['net_0']: track = int(cfg_parser['net_0']['track'])
+    if 'time_steps' in cfg_parser['net_0']: time_steps = int(cfg_parser['net_0']['time_steps'])
+    if 'augment_speed' in cfg_parser['net_0']: augment_speed = int(cfg_parser['net_0']['augment_speed'])
+    
+
+    
     # training learning parameter:
     momentum = float(cfg_parser['net_0']['momentum'])
     weight_decay = float(cfg_parser['net_0']['decay']
@@ -228,6 +239,25 @@ def yolo_parse(path_cfg):
             print('prev_layer:{}, layer:{}, yolo, classes:{}, mask:{}, anchors:{}'.format(prev_layer, count_layer,classes,mask,anchors))
             all_layers.append(structure)    
       
+        elif section.startswith('crnn'):            
+            hidden = int(cfg_parser[section]['hidden'])
+            size = int(cfg_parser[section]['size'])
+            output = int(cfg_parser[section]['output'])
+            pad = int(cfg_parser[section]['pad'])
+            activation = cfg_parser[section]['activation']
+            batch_normalize = 'batch_normalize' in cfg_parser[section]
+            
+            if all_layers[-1]['type']!='input': 
+                if all_layers[-1]['type']=='shortcut':
+                    prev_layer=all_layers[-1]['prev_layer']
+                else:
+                    prev_layer=all_layers[-1]['layer']  
+            else: 
+                prev_layer=0  
+            structure={'type':'crnn','prev_layer': prev_layer,'layer': count_layer,'output':output ,'hidden':hidden,'size':size,'pad':pad,'activation':activation,'batch_normalize':batch_normalize,'time_steps':time_steps}
+            print('prev_layer:{}, layer:{}, crnn., output size={}, hidden size={}, time_steps={},size={}, pad={}, activation={}, batch_normalize={}'.format(prev_layer,count_layer,output, hidden,time_steps, size,pad,activation,batch_normalize))
+            all_layers.append(structure)
+        
         elif (section.startswith('net') or section.startswith('cost') or
                   section.startswith('softmax')):
                 pass  # Configs not currently handled during model definition.    
