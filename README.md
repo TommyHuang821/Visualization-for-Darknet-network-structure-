@@ -1,8 +1,8 @@
 # Visualization-for-Darknet-network-structure-
 
-Visualizing the darknet network structure by .cfg file, and also provide the output featrue map size for each layer.
-
 [2019/03/20] adding node [crnn]
+
+Visualizing the darknet network structure by .cfg file, and also provide the output featrue map size for each layer.
 
 # How to use
 Example: python3 main_DarknetVisualization.py 
