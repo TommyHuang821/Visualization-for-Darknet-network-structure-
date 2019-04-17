@@ -153,7 +153,7 @@ def yolo_parse(path_cfg):
             else:
                 skip_layer = layers[0]  # only one layer to route
                 skip_layer = skip_layer['layer']
-                if prev_layer<0:
+                if skip_layer<0:
                     prev_layer=count_layer+skip_layer
                 else: 
                     prev_layer=skip_layer
