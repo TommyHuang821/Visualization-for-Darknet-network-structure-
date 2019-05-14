@@ -1,5 +1,11 @@
 # Visualization-for-Darknet-network-structure-
 
+[2019/05/14] Modify the number of output channel in residual operation (ElewiseSUM)
+
+For instance, layer -1 (128*32*32) and layer 66 (256*32*32) (ch * w * h)
+
+residual (layer -1 and layer 66) = 128 * 32 * 32
+
 [2019/03/20] adding node [crnn]
 
 Visualizing the darknet network structure by .cfg file, and also provide the output featrue map size for each layer.
