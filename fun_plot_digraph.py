@@ -328,7 +328,8 @@ def create_node(grap_g,all_layers):
             residual(grap_g)
             curr_layer=layer['layer']
             if len(imagesize)>0:
-                h,w,ch=imagesize[pos_previous[0]]  
+                cap_ind = np.argmin(np.abs(np.array(pos_previous)-curr_layer))
+                h,w,ch=imagesize[pos_previous[cap_ind]]  
                 #imagesize.append([h,w,ch])
                 imagesize[layer['layer']]=[h,w,ch]
                 h,w,ch=str(h),str(w),str(ch)
