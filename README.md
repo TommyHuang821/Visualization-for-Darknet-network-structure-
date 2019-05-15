@@ -2,7 +2,7 @@
 
 [2019/05/14] Modify the number of output channel in residual operation (ElewiseSUM)
 
-For instance, layer -1 (128*32*32) and layer 66 (256*32*32) (ch * w * h)
+For instance, layer -1 (128 * 32 * 32) and layer 66 (256 * 32 * 32) (ch * w * h)
 
 residual (layer -1 and layer 66) = 128 * 32 * 32
 
