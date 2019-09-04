@@ -1,6 +1,20 @@
 # -*- coding: utf-8 -*-
 """
 create YOLO model nodes and link edges
+ONLY support NN Component as follow:
+1. inputimage 
+2. conv
+3. maxpool
+4. reorg 
+5. upsample 
+6. yolo_region
+7. net
+8. concatenate
+9. residual
+10. crnn
+11. conv_lstm
+
+
 @author: Tommy Huang, chih.sheng.huang821@gmail.com
 """
 import numpy as np   
@@ -47,6 +61,11 @@ def residual(grap_g):
     
 def crnn(grap_g):
     grap_g.attr('node', shape='record', style='filled', color='lightslateblue')
+
+def conv_lstm(grap_g):
+    grap_g.attr('node', shape='record', style='filled', color='lightslateblue')
+
+
 
 def cal_conv_w_h_ch(h,w,ch,ks,pad,stride,n_filter):
     tmp_inf=[]
@@ -164,7 +183,6 @@ def create_node(grap_g,all_layers):
             inputimage(grap_g)
             grap_g.node('Input',r'{ Input |output: %d × %d × %d}' % (h,w,ch))  
             
-            #imagesize.append([h,w,ch])
             imagesize[0]=[h,w,ch]
             
         elif layer['type']=='convolutional':              
@@ -338,8 +356,7 @@ def create_node(grap_g,all_layers):
                 #imagesize.append([h,w,ch])
                 imagesize[layer['layer']]=[h,w,ch]
             grap_g.node('l_'+ str(curr_layer), r'{ElewiseSum|output: %s × %s × %s}' % (h,w,ch))
-        elif layer['type']=='crnn': 
-            
+        elif layer['type']=='crnn':     
             crnn(grap_g)
             curr_layer=layer['layer']
             output=layer['output']
@@ -370,6 +387,28 @@ def create_node(grap_g,all_layers):
                 grap_g.node('l_'+ str(curr_layer)+ '_1', r'{CRNN|Conv_%d|{ks=%d, s=%d, p=%d , %s}| output: %s × %s × %s}' % (hidden,ks,stride,pad,act,h,w,hidden))
                 grap_g.node('l_'+ str(curr_layer)+ '_2', r'{CRNN|Conv_%d|{ks=%d, s=%d, p=%d , %s}| output: %s × %s × %s}' % (output,ks,stride,pad,act,h,w,output))
                 grap_g.node('l_'+ str(curr_layer)+ '_3', r'{CRNN|Conv_%d|{ks=%d, s=%d, p=%d , %s}| output: %s × %s × %s}' % (output,ks,stride,pad,act,h,w,output))
+        elif layer['type']=='conv_lstm': 
+            conv_lstm(grap_g)
+            curr_layer=layer['layer']
+            output=layer['output']
+            peephole=layer['peephole']
+            ks=layer['size']
+            pad=layer['pad']
+            act=layer['activation']
+            bn=layer['batch_normalize']
+            if len(imagesize)>0:
+                h,w,ch=imagesize[pos_previous]
+                h,w,ch = cal_crnn_w_h_ch(h,w,ch,ks,pad,stride,output)
+                imagesize[layer['layer']]=[h,w,ch]
+                h,w,ch=str(h),str(w),str(ch)
+            else:
+                h,w,ch='?','?','?'
+                imagesize[layer['layer']]=[h,w,ch]
+                
+            if bn:
+                grap_g.node('l_'+ str(curr_layer), r'{conv_lstm_%d (bn)| peephole=%d |{ks=%d, s=%d, p=%d , %s}| output: %s × %s × %s}' % (output,peephole,ks,stride,pad,act,h,w,output))
+            else:
+                grap_g.node('l_'+ str(curr_layer), r'{conv_lstm_%d| peephole=%d |{ks=%d, s=%d, p=%d , %s}| output: %s × %s × %s}' % (output, peephole,ks,stride,pad,act,h,w,output))
             
         
         
