@@ -48,31 +48,63 @@ def yolo_parse(path_cfg):
                         'exposure':exposure,'hue':hue}
     
     # rnn setting
-    time_steps=0
-    track=0
-    augment_speed=0    
-    if 'track' in cfg_parser['net_0']: track = int(cfg_parser['net_0']['track'])
-    if 'time_steps' in cfg_parser['net_0']: time_steps = int(cfg_parser['net_0']['time_steps'])
-    if 'augment_speed' in cfg_parser['net_0']: augment_speed = int(cfg_parser['net_0']['augment_speed'])
-    
+    time_steps, track, augment_speed='','',''
+    batch, subdivisions='',''
+    momentum, weight_decay, learning_rate='','',''
+    burn_in, max_batches, policy='','',''
+    steps, scales='',''
+    sgdr_cycle, sgdr_mult, seq_scales='','',''
+    if 'batch' in cfg_parser['net_0']:
+        batch = int(cfg_parser['net_0']['batch'].split('#')[0])
+    if 'subdivisions' in cfg_parser['net_0']:
+        subdivisions = int(cfg_parser['net_0']['subdivisions'].split('#')[0])
 
+    if 'track' in cfg_parser['net_0']: track = int(cfg_parser['net_0']['track'].split('#')[0])
+    if 'time_steps' in cfg_parser['net_0']: time_steps = int(cfg_parser['net_0']['time_steps'].split('#')[0])
+    if 'augment_speed' in cfg_parser['net_0']:augment_speed = int(cfg_parser['net_0']['augment_speed'].split('#')[0])                             
     
     # training learning parameter:
-    momentum = float(cfg_parser['net_0']['momentum'])
-    weight_decay = float(cfg_parser['net_0']['decay']
-                             ) if 'net_0' in cfg_parser.sections() else 5e-4
-    learning_rate = float(cfg_parser['net_0']['learning_rate']) #學習率
-    burn_in = int(cfg_parser['net_0']['burn_in']) #學習率控制的參數
-    max_batches = int(cfg_parser['net_0']['max_batches']) #跌代次數
-    policy = (cfg_parser['net_0']['policy']) #學習率策略 
-    steps = list(map(int,cfg_parser['net_0']['steps'].split(','))) #學習率變動步長
-    scales = list(map(float,cfg_parser['net_0']['scales'].split(','))) #學習率變動因子
-    batch_train=64
-    subdivision_train=16
-    training_parameter={'batch_train':batch_train,'subdivision_train':subdivision_train,
-                        'momentum':momentum,'weight_decay': weight_decay,'learning_rate': learning_rate ,
-                        'burn_in':burn_in,'max_batches':max_batches,'policy':policy,
-                        'steps':steps,'scales':scales}
+    if 'momentum' in cfg_parser['net_0']:
+        momentum = float(cfg_parser['net_0']['momentum'])
+    if 'weight_decay' in cfg_parser['net_0']:
+        weight_decay = float(cfg_parser['net_0']['decay']) if 'net_0' in cfg_parser.sections() else 5e-4
+    if 'learning_rate' in cfg_parser['net_0']:
+        learning_rate = float(cfg_parser['net_0']['learning_rate']) #學習率
+    if 'burn_in' in cfg_parser['net_0']:    
+        burn_in = int(cfg_parser['net_0']['burn_in']) #學習率控制的參數
+    if 'max_batches' in cfg_parser['net_0']:    
+        max_batches = int(cfg_parser['net_0']['max_batches']) #跌代次數
+    
+    if 'policy' in cfg_parser['net_0']:    
+        policy = (cfg_parser['net_0']['policy']) #學習率策略 
+    if 'steps' in cfg_parser['net_0']:
+        steps = list(map(int,cfg_parser['net_0']['steps'].split(','))) #學習率變動步長
+    if 'scales' in cfg_parser['net_0']:
+        scales = list(map(float,cfg_parser['net_0']['scales'].split(','))) #學習率變動因子
+    
+    #
+    if 'sgdr_cycle' in cfg_parser['net_0']:
+        sgdr_cycle = list(map(float,cfg_parser['net_0']['sgdr_cycle'].split(','))) 
+    if 'sgdr_mult' in cfg_parser['net_0']:
+        sgdr_mult = list(map(float,cfg_parser['net_0']['sgdr_mult'].split(','))) 
+    if 'seq_scales' in cfg_parser['net_0']:
+        seq_scales = list(map(float,cfg_parser['net_0']['seq_scales'].split(',')))
+        
+    training_parameter={'batch':batch,
+                        'subdivisions':subdivisions,
+                        'momentum':momentum,
+                        'weight_decay': weight_decay,
+                        'learning_rate': learning_rate,
+                        'burn_in':burn_in,
+                        'max_batches':max_batches,
+                        'augment_speed':augment_speed,
+                        'policy':policy,
+                        'steps':steps,
+                        'track':track,
+                        'scales':scales,
+                        'sgdr_cycle':sgdr_cycle,
+                        'sgdr_mult': sgdr_mult, 
+                        'seq_scales': seq_scales}
     
     structure={'type':'input',
                'image_structure':image_structure,
@@ -144,7 +176,6 @@ def yolo_parse(path_cfg):
                 else:
                     layers.append(all_layers[i])
             #layers = [all_layers[i] for i in ids]
-            
             if len(layers) > 1:
                 prev_layer=[i['layer'] for i in layers]  
                 structure={'type':'concatenate', 'prev_layer': prev_layer, 'layer': count_layer}
@@ -257,7 +288,19 @@ def yolo_parse(path_cfg):
             structure={'type':'crnn','prev_layer': prev_layer,'layer': count_layer,'output':output ,'hidden':hidden,'size':size,'pad':pad,'activation':activation,'batch_normalize':batch_normalize,'time_steps':time_steps}
             print('prev_layer:{}, layer:{}, crnn., output size={}, hidden size={}, time_steps={},size={}, pad={}, activation={}, batch_normalize={}'.format(prev_layer,count_layer,output, hidden,time_steps, size,pad,activation,batch_normalize))
             all_layers.append(structure)
-        
+        elif section.startswith('conv_lstm'):
+            size = int(cfg_parser[section]['size'])
+            output = int(cfg_parser[section]['output'])
+            pad = int(cfg_parser[section]['pad'])
+            activation = cfg_parser[section]['activation']
+            batch_normalize = 'batch_normalize' in cfg_parser[section]
+            peephole = 'peephole' in cfg_parser[section]
+            
+            prev_layer=all_layers[-1]['layer']  
+            
+            structure={'type':'conv_lstm','prev_layer': prev_layer,'layer': count_layer,'output':output,'size':size,'pad':pad,'activation':activation,'batch_normalize':batch_normalize,'time_steps':time_steps,'peephole':peephole}
+            print('prev_layer:{}, layer:{}, conv_lstm., output size={}, time_steps={},size={}, pad={}, activation={}, batch_normalize={}'.format(prev_layer,count_layer,output,time_steps, size,pad,activation,batch_normalize))
+            all_layers.append(structure)
         elif (section.startswith('net') or section.startswith('cost') or
                   section.startswith('softmax')):
                 pass  # Configs not currently handled during model definition.    
