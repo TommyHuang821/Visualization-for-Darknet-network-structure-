@@ -1,4 +1,5 @@
 # Visualization-for-Darknet-network-structure-
+[2019/09/04] adding node [conv_lstm]
 
 [2019/05/14] Modify the number of output channel in residual operation (ElewiseSUM)
 
